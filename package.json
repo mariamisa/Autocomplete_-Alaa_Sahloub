@@ -1,0 +1,22 @@
+{
+  "name": "autocomplete_-alaa_sahloub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G9/Autocomplete_-Alaa_Sahloub.git"
+  },
+  "author": "AlaaSahloub",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G9/Autocomplete_-Alaa_Sahloub/issues"
+  },
+  "homepage": "https://github.com/GSG-G9/Autocomplete_-Alaa_Sahloub#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

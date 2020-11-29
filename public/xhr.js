@@ -1,10 +1,15 @@
-function fetch (url,callbackRes){
+const { handleError } = require("../src/handler");
+
+function fetch (url,cb){
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState === 4){
             if(xhr.status === 200){
                 const response = JSON.parse(xhr.responseText);
-                callbackRes(response.result); 
+                cb(null,response); 
+            }
+            else{
+                cb(xhr.responseText)
             }
         }
     }

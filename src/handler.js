@@ -39,7 +39,7 @@ const handleAsset = (response, endpoint)=>{
     });
 };
 
-const handleSearch = ( response)=>{
+const handleSearch = ( response,endpoint)=>{
     const queryEndPoint = endpoint.split('?')[1];
     const {query} = querystring.parse(queryEndPoint);
     const filepath = path.join(__dirname, '.', 'words.txt');
@@ -48,10 +48,10 @@ const handleSearch = ( response)=>{
         response.writeHead(500, { 'Content-Type': 'text/html' });
         response.end('<h1>Internal server error.</h1>');
       }else{
-       const wordsArr = contents.split("\r\n");
+       const wordsArr = contents.split("\n");
         const result = wordsArr.filter((word)=> word.startsWith(query)).slice(0,20)
-        console.log(query,result);
-       response.end(JSON.stringify({result}));
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify(result));
       }
     });
 };

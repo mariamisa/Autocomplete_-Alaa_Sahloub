@@ -7,8 +7,9 @@ const router = (request, response) => {
     } else if (endpoint.includes('public')) {
         handleAsset(response, endpoint);
     } else if( endpoint.includes('/search')){
-        handleSearch( response);
-    }else {
+        handleSearch( response,endpoint);
+    }
+    else {
         handleError(response);
     }
   };

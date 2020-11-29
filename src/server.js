@@ -3,6 +3,7 @@ const http = require('http');
 const port = 3000;
 const path = require('path');
 const fs = require('fs');
+const querystring = require('querystring');
 
 const router = (request, response) => {
   const endpoint = request.url;
@@ -38,7 +39,23 @@ const router = (request, response) => {
         response.end(file);
       }
     });
-  } else {
+  } else if( endpoint.includes('/search')){
+    const queryEndPoint = endpoint.split('?')[1];
+    const {query} = querystring.parse(queryEndPoint);
+    const filepath = path.join(__dirname, '.', 'words.txt');
+    fs.readFile(filepath, 'utf8' , (error ,contents)=>{
+      if(error){
+        response.writeHead(500, { 'Content-Type': 'text/html' });
+        response.end('<h1>Internal server error.</h1>');
+      }else{
+       const wordsArr = contents.split("\r\n");
+        const result = wordsArr.filter((word)=> word.startsWith(query)).slice(0,20)
+        console.log(query,result);
+        // response.writeHead(200, {'Content-Type' : 'application/json'})
+       response.end(JSON.stringify({result}));
+      }
+    })
+  }else {
     response.writeHead(404, { 'Content-Type': 'text/html' });
     response.write('note found');
     response.end();

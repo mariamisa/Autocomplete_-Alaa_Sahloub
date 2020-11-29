@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-    <form action="/search-result" method="POST" id="form_search">
-        <input type="search" name="post" id="search_input">
+    <form id="form_search">
+      
     </form>
-    <div class="search_suggestion"></div>
+    <input type="search" id="search_input"  list="suggestions">
+    <datalist id="suggestions">
+
+    </datalist>
+    <script type="text/javascript" src="public/xhr.js"></script>
     <script type="text/javascript" src="public/script.js"></script>
 </body>
 </html>
